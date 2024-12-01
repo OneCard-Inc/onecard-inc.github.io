@@ -3,117 +3,260 @@
 <head>
   <meta charset="UTF-8">
   <title>onecard: for all your cards</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family:'Lucida Console', monospace;
+      font-family: 'Inter', sans-serif;
       font-size: 18px;
       color: #111;
-      background-color: white;
+      background-color: #F7EEDD;
       max-width: 1280px;
       margin: 0 auto;
-      padding: 0 50px;
+      /* padding: 0 50px; */
+      padding-bottom: 50px; /* Adjust the value as needed */
       box-sizing: border-box;
     }
+    hr {
+      border: none; /* Removes default border styling */
+      height: 2px; /* Sets the thickness of the line */
+      background-color: #cccbc8; /* Sets the color */
+      margin: 40px 0; /* Adds vertical spacing */
+      width: 100vw; /* Full viewport width */
+      position: relative; /* Ensures it respects the layout flow */
+      left: 50%; /* Align it properly when using viewport width */
+      transform: translateX(-50%); /* Centers the hr visually */
+    }
+    a {
+      color: inherit; /* Match the color of surrounding text */
+      text-decoration: none; /* Removes underline */
+    }
+
+    a:hover,
+    a:focus {
+      text-decoration: none; /* Ensure underline doesn’t appear on hover/focus */
+      outline: none; /* Removes focus outline */
+    }
+
+    a:active {
+      color: inherit; /* Keeps color consistent during active state */
+    }
+
     .landing {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height:100vh; min-height:100dvh;
+      min-height: 100vh;
       text-align: center;
     }
-    svg { width: 100%; height: auto; }
-    .svg-container {
-      display: flex; /* Center the image horizontally */
-      justify-content: center; /* Align the image to the center */
-      align-items: center; /* Vertically align within the container */
-      margin: 0 auto; /* Center the container itself */
-      width: 100%; /* Allow flexibility */
-    }
-    .svg-container img {
-      width: 600px;
+    .image-container img {
+      display: block;
+      margin: 0 auto;
+      width: 450px;
       height: auto;
-      object-fit: cover; /* Ensures the image fills the space proportionally */
     }
-    .separator { letter-spacing: -9px; }
-    hr { border: none; height: 2px; background-color: lightgrey; width: 100%; margin: 30px auto; }
-    table { border-collapse: collapse; text-align: center; width: 100%; }
-    td {
-      padding: 5px 20px;
-      border: 1px solid #dddddd;
+    .image-caption {
+      margin-top: 10px;
+      padding: 0;
+      font-size: 36px;
+      color: #111;
+      font-family: 'Inter', sans-serif;
+      line-height: 1.5;
+      font-weight: bold;
     }
-    .quiet, .links-container a { color: inherit; }
-    .links-container { font-size: 24px; margin: 20px; }
-    .links-container a { text-decoration: none; margin: 0 10px; }
-    .product-photo { display: block; max-width: 640px; width: 100%; margin: 0 auto; }
-    .faqtable dt { margin-bottom: 0.75em; font-style: italic; }
-    .faqtable dd { margin-left: 0; margin-bottom: 2em; }
+    .form-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-top: 40px;
+    }
+    .waitlist-form {
+      position: relative;
+      width: 400px; /* Controls the width of the form */
+      margin: 0 auto;
+    }
+
+    .waitlist-form input {
+      width: 100%; /* Full width of the container */
+      padding: 15px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 30px; /* Rounder appearance */
+      font-family: 'Inter', sans-serif;
+      padding-right: 120px; /* Space for the button */
+      box-sizing: border-box;
+    }
+
+    .waitlist-form button {
+      position: absolute;
+      right: 5px; /* Keeps it close to the edge */
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: #111;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 30px;
+      font-size: 16px;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .waitlist-form button:hover {
+      background-color: #333;
+    }
+    .info-section {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      margin: 80px 0;
+      padding: 20px;
+      background-color: #F7EEDD; /* Matches page background */
+      border-radius: 10px;
+      flex-wrap: wrap; /* Ensures responsiveness */
+      gap: 20px; /* Adds space between text and image */
+    }
+
+    .info-section .text-container {
+      flex: 1;
+      min-width: 300px; /* Ensures text stays properly sized on smaller screens */
+    }
+
+    .info-section .text-container h1 {
+      font-size: 36px;
+      line-height: 1.5;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    .info-section .image-container {
+      flex: 1;
+      min-width: 300px; /* Ensures image stays properly sized on smaller screens */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .info-section .image-container img {
+      max-width: 250px; /* Explicitly sets a smaller maximum width */
+      width: 100%; /* Scales down with container */
+      height: auto;
+      border-radius: 10px;
+    }
+    .fade-in-image {
+      opacity: 0; /* Hidden initially */
+      transform: translateY(20px); /* Move slightly below its position */
+      transition: opacity 2s ease-in-out, transform 2s ease-in-out; /* Animate both opacity and transform */
+    }
+
+    .fade-in-active {
+      opacity: 1; /* Fully visible */
+      transform: translateY(0); /* Move to its original position */
+    }
+
+
+
+
 
   </style>
 </head>
 <body>
   <div class="landing">
-    <div class="svg-container">
-      <img src="assets/oc-light-remove-background.svg" alt="logo"/>
+    <div class="image-container">
+      <img src="assets/oc-dark-card.png" alt="logo" class="fade-in-image">
+      <p class="image-caption typing-effect" id="caption">Consolidate your credit cards. Maximize rewards.</p>
     </div>
-    <div class="links-container">
-      <a href="assets/onecard-white-paper.pdf" target="_blank" rel="noopener noreferrer">onecard</a><span class="separator">|</span>
-      <!-- <a href="https://docs.onecard.org">docs</a><span class="separator">|</span> -->
-      <!-- <a href="index.html#work">jobs</a><span class="separator">|</span>
-      <a href="index.html#faq">faq</a><span class="separator">|</span> -->
-      <a href="index.html#waitlist">join the waitlist</a>
+    
+    <div class="form-container">
+      <form action="/submit-waitlist" method="POST" class="waitlist-form">
+        <input 
+          type="email" 
+          name="email" 
+          placeholder="Enter email address" 
+          required 
+        />
+        <button type="submit">Join the waitlist</button>
+      </form>
     </div>
+    
   </div>
-
   <hr>
-  <section id="waitlist" style="text-align: center; margin: 50px 0;">
-    <h2>Ready to join?</h2>
-    <p>Be part of the future of payments with OneCard. Join the waitlist now!</p>
-    <form action="/submit-waitlist" method="POST" style="margin-top: 20px; display: flex; justify-content: center; gap: 10px; align-items: center;">
-      <input 
-        type="email" 
-        name="email" 
-        placeholder="Enter your email" 
-        required 
-        style="
-          padding: 10px;
-          font-size: 18px;
-          width: 300px;
-          max-width: 100%;
-          border: 1px solid #ccc;
-          border-radius: 10px; /* Rounded edges */
-          font-family: 'Lucida Console', monospace; /* Match site font */
-        " 
-      />
-      <button 
-        type="submit" 
-        style="
-          background-color: transparent; /* Transparent background */
-          color: #111; /* Text color */
-          padding: 10px 20px;
-          border: 2px solid #111; /* Border with same color as text */
-          border-radius: 10px; /* Rounded edges */
-          font-size: 18px;
-          cursor: pointer;
-          font-family: 'Lucida Console', monospace; /* Match site font */
-          transition: all 0.3s ease; /* Smooth transition for hover */
-        "
-        onmouseover="this.style.backgroundColor='#111'; this.style.color='white';"
-        onmouseout="this.style.backgroundColor='transparent'; this.style.color='#111';"
-      >
-        Join the Waitlist
-      </button>
-    </form>
+  <section class="info-section">
+    <div class="text-container">
+      <h1>Download the OneCard app and link your cards.</h1>
+      <br><br><br><br>
+      <h1>OneCard will choose the best card at checkout and earn you more rewards.</h1>
+    </div>
+    <div class="image-container">
+      <img src="assets/iphone-app.png" alt="iPhone showcasing app">
+    </div>
   </section>
+  <hr>
+  <section class="join-us-section">
+    <h1>Join us!</h1>
+    <p style="font-size: 18px; line-height: 1.4;">
+      We’re on a mission to create a smarter credit card. Whether you’re
+      a user, investor, or collaborator, we’d love to hear from you.
+    </p>
+    <p>
+      Get in touch at <strong><a href="mailto:contact@onecard.com">contact@onecard.com</a></strong>
+    </p>
+  </section>
+  
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-2X23WL0SZR"></script>
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+    if (window.location.hostname !== "localhost") {
+      (function() {
+        var gtagScript = document.createElement("script");
+        gtagScript.src = "https://www.googletagmanager.com/gtag/js?id=G-2X23WL0SZR";
+        gtagScript.async = true;
+        document.head.appendChild(gtagScript);
 
-    gtag('config', 'G-2X23WL0SZR');
+        gtagScript.onload = function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-2X23WL0SZR');
+        };
+      })();
+    }
   </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Fade-in effect for the image
+      const image = document.querySelector('.fade-in-image');
+      if (image) {
+        console.log("Image element found:", image);
+        image.classList.add('fade-in-active'); // Adds the active class to start fade-in
+      }
+      else {
+        console.log("Image element not found:");
+      }
+  
+      // Typing effect for the caption
+      const caption = document.getElementById("caption");
+      const text = "Consolidate your credit cards. Maximize rewards.";
+      let index = 0;
+  
+      function type() {
+        if (index < text.length) {
+          caption.textContent += text[index];
+          index++;
+          setTimeout(type, 100); // Typing speed (100ms per character)
+        }
+      }
+  
+      // Start typing effect
+      caption.textContent = ""; // Clear initial content
+      type();
+    });
+  </script>
+  
+  
 </body>
 </html>
